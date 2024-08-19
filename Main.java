@@ -38,14 +38,17 @@ public class Main {
             try {
                 if (System.in.available() > 0) {
                     scanner.nextLine();
+                    thread1.interrupt();
                     break;
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        System.out.println("Timer is: "+ t.counter);
-        System.out.println("Your score is: "+ t.getScore());
+
+        System.out.println("Timer is: "+ t.counter + " miliseconds");
+        System.out.println("Your goal was: "+ t.gaol + " miliseconds");
+        System.out.println("Your score is: "+ t.getScore()+"%");
         scanner.close();
     }
 }
