@@ -14,9 +14,26 @@ public class Main {
 
         Timer t = new Timer(timer, end);
 
+
+
+        System.out.println("Your goal is to count to "+timer+" miliseconds.");
+        System.out.println("You can be up to "+end+" miliseconds late.");
+        System.out.println("Push Enter to stop the timer.");
+
+        System.out.println("Timer is starting...");
+        int countdown = 3;
+        for(int i = 0; i<countdown; i++){
+            System.out.println(countdown-i);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("BEGIN!");
         Thread thread1 = new Thread(t);
         thread1.start();
-
+        
         while(!timerFinished){
             try {
                 if (System.in.available() > 0) {
