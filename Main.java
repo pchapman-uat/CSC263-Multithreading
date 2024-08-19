@@ -1,18 +1,26 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
+    static boolean timerFinished = false;
     public static void main(String[] args){
         System.out.println("Hello World!");
-        Timer t = new Timer(10000);
+        Timer t = new Timer(1000);
         Thread thread1 = new Thread(t);
         thread1.start();
-        // Get User Input
         Scanner scanner = new Scanner(System.in);
-        String userInput = scanner.nextLine();
-        thread1.interrupt();
-        System.out.println("You entered: " + userInput);
+        while(!timerFinished){
+            try {
+                if (System.in.available() > 0) {
+                    scanner.nextLine();
+                    break;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         System.out.println("Timer is: "+ t.counter);
-        
+        scanner.close();
     }
 }
 
@@ -33,6 +41,7 @@ class Timer implements Runnable {
             }
         }
         System.out.println("Timer finished.");
+        Main.timerFinished = true;
     }
 }
 
