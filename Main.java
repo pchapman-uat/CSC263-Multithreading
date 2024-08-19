@@ -65,15 +65,21 @@ public class Main {
         scanner.close();
     }
 
+    // Calculate the score
     private static String calcScoreString(double num){
+        // Num is a score between 0 and 100, this is changed to a percentage
         num /= 100;
+        // Color styles for the terminal
         final String ANSI_RESET = "\u001B[0m";
         final String ANSI_RED = "\u001B[31m";
         final String ANSI_GREEN = "\u001B[32m";
         final String ANSI_YELLOW = "\u001B[33m";
 
+        // Threshold values for the colors
         final double greenThreshold = 0.9;
         final double yellowThreshold = 0.7;
+
+        // Return the result with the color based on the score
         if(num >= greenThreshold){
             return ANSI_GREEN + "Perfect!" + ANSI_RESET;
         }else if(num >= yellowThreshold){
