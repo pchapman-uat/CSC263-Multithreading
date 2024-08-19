@@ -140,7 +140,10 @@ class Timer implements Runnable {
         return score;
     }
 }
-
+/**
+ * This is an example of a thread that counts to 5, it is not used in the project
+ * @deprecated
+ */
 class MyThread extends Thread {
     private String threadName;
     public MyThread(String name) {
@@ -159,6 +162,10 @@ class MyThread extends Thread {
     }
 }
 
+/**
+ * This is an example of a runnable that counts to 5, it is not used in the project
+ * @deprecated
+ */
 class MyRunnable implements Runnable {
     private String threadName;
     public MyRunnable(String name) {
