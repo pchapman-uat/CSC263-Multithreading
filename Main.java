@@ -1,6 +1,12 @@
 public class Main {
     public static void main(String[] args){
         System.out.println("Hello World!");
+        MyThread t1 = new MyThread("Thread 1");
+        MyThread t2 = new MyThread("Thread 2");
+        MyThread t3 = new MyThread("Thread 3");
+        t1.start();
+        t2.start();
+        t3.start();
     }
 }
 
