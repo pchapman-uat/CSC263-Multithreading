@@ -6,20 +6,23 @@ public class Main {
     public static void main(String[] args){
         System.out.println("Hello World!");
         Scanner scanner = new Scanner(System.in);
+        // Get the users input for the timer
+        // BUG: If you enter a number that is not an integer, the program will crash.
         System.out.println("How many miliseconds do you want to count?");
         int timer = scanner.nextInt();
         System.out.println("How late can you be?");
         int end = scanner.nextInt();
 
-
+        // Create a new timer
         Timer t = new Timer(timer, end);
 
 
-
+        // Display the goal
         System.out.println("Your goal is to count to "+timer+" miliseconds.");
         System.out.println("You can be up to "+end+" miliseconds late.");
         System.out.println("Push Enter to stop the timer.");
 
+        // Countdown for the game
         System.out.println("Timer is starting...");
         int countdown = 3;
         for(int i = 0; i<countdown; i++){
@@ -30,27 +33,35 @@ public class Main {
                 e.printStackTrace();
             }
         }
+        // Start the timer
         System.out.println("BEGIN!");
         Thread thread1 = new Thread(t);
         thread1.start();
         
+        // Wait for the timer to finish
         while(!timerFinished){
             try {
+                // Check if the user has pressed enter
                 if (System.in.available() > 0) {
                     scanner.nextLine();
+                    // Stop the timer
                     thread1.interrupt();
+                    // Exit the loop
                     break;
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+        // Print the results
         System.out.println("Your goal was: "+ t.gaol + " miliseconds");
         System.out.println("Timer is: "+ t.counter + " miliseconds");
+        // Calculate the score
         float score = t.getScore();
         System.out.println(calcScoreString(score));
         System.out.println("You got: "+score+"%");
 
+        // Close the scanner
         scanner.close();
     }
 
