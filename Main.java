@@ -1,20 +1,6 @@
 public class Main {
     public static void main(String[] args){
         System.out.println("Hello World!");
-        MyThread t1 = new MyThread("Thread 1");
-        MyThread t2 = new MyThread("Thread 2");
-        MyThread t3 = new MyThread("Thread 3");
-
-        Thread t4 = new Thread(new MyRunnable("Thread 4"));
-        Thread t5 = new Thread(new MyRunnable("Thread 5"));
-        Thread t6 = new Thread(new MyRunnable("Thread 6"));
-        
-        t1.start();
-        t2.start();
-        t3.start();
-        t4.start();
-        t5.start();
-        t6.start();
     }
 }
 
