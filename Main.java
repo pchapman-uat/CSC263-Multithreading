@@ -28,6 +28,7 @@ public class Main {
             }
         }
         System.out.println("Timer is: "+ t.counter);
+        System.out.println("Your score is: "+ t.getScore());
         scanner.close();
     }
 }
@@ -36,7 +37,7 @@ class Timer implements Runnable {
     public final int gaol;
     public final int end;
     public int counter = 0;
-    
+
     public Timer(int gaol, int end){
         this.gaol = gaol;
         this.end = end;
@@ -53,6 +54,17 @@ class Timer implements Runnable {
         }
         System.out.println("Timer finished.");
         Main.timerFinished = true;
+    }
+
+    public float getScore(){
+        float score = (float)counter/(float)gaol;
+        if(counter == gaol+end){
+            score = 0;
+        }
+        if(score > 1){
+            score = 1 - (score-1);
+        }
+        return score*100;
     }
 }
 
