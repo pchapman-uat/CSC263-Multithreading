@@ -90,37 +90,51 @@ public class Main {
     }
 }
 
+// Timer class
 class Timer implements Runnable {
+    // The goal is the amount of miliseconds the user has to count to
     public final int gaol;
+    // The end is the amount of miliseconds the user can be late
     public final int end;
+    // The counter is the amount of miliseconds the user has counted to
     public int counter = 0;
-
     public Timer(int gaol, int end){
         this.gaol = gaol;
         this.end = end;
     }
+    // The run method is called when the thread is started
     @Override
     public void run() {
+        // Start the timer
         for(int i=0; i<gaol+end; i++){
             try {
+                // Sleep for 1 millisecond
+                // Doing sleep will result in an inacurate timer, but for the purpose of this project it is fine
                 Thread.sleep(1);
                 counter++;
             } catch (InterruptedException e) {
                 break;
             }
         }
+        // Set the timerFinished variable to true
         System.out.println("Timer finished.");
         Main.timerFinished = true;
     }
 
+    // Get the score
+    // Returns a value from 0 to 100
     public float getScore(){
+        // Calculate the score
         float score = (float)counter/(float)gaol;
+        // If the timer is finished, the score is 0
         if(counter == gaol+end){
             score = 0;
         }
+        // If the timer is late, calculate the distance from the goal
         if(score > 1){
             score = 1 - (score-1);
         }
+        // Round the score to 2 decimal places
         score*=100;
         score = (float) (Math.round(score * 100.0) / 100.0);
         return score;
