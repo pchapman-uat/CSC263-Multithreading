@@ -84,7 +84,9 @@ class Timer implements Runnable {
         if(score > 1){
             score = 1 - (score-1);
         }
-        return score*100;
+        score*=100;
+        score = (float) (Math.round(score * 100.0) / 100.0);
+        return score;
     }
 }
 
