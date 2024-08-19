@@ -45,11 +45,31 @@ public class Main {
                 e.printStackTrace();
             }
         }
-
-        System.out.println("Timer is: "+ t.counter + " miliseconds");
         System.out.println("Your goal was: "+ t.gaol + " miliseconds");
-        System.out.println("Your score is: "+ t.getScore()+"%");
+        System.out.println("Timer is: "+ t.counter + " miliseconds");
+        float score = t.getScore();
+        System.out.println(calcScoreString(score));
+        System.out.println("You got: "+score+"%");
+
         scanner.close();
+    }
+
+    private static String calcScoreString(double num){
+        num /= 100;
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_RED = "\u001B[31m";
+        final String ANSI_GREEN = "\u001B[32m";
+        final String ANSI_YELLOW = "\u001B[33m";
+
+        final double greenThreshold = 0.9;
+        final double yellowThreshold = 0.7;
+        if(num >= greenThreshold){
+            return ANSI_GREEN + "Perfect!" + ANSI_RESET;
+        }else if(num >= yellowThreshold){
+            return ANSI_YELLOW + "Great!" + ANSI_RESET;
+        }else{
+            return ANSI_RED + "Too Bad" + ANSI_RESET;
+        }
     }
 }
 
